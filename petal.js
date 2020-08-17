@@ -11,10 +11,17 @@
 //   Start, Curve point, Curve point, end point
 
 // Petal could have two different curves
-
+d3 = require("d3");
+_ = require("lodash");
+const data = require("movies.json").then(data => _.values(data));
 petalPath = 'M0,0 C-10,-10 -10,-40 0,-50 C10,-40, 10,-10 0,0';
 petalSize = 50;
 // translate it down
 //html`<svg><path transform="translate(50,50)" d="${petalPath}"></svg>`
 
 // d3 scales translates one into another
+
+const svg = DOM.svg(petalSize*2, petalSize*2);
+const ratingMinmax = d3.extent(data, d => +d.imdbRating);
+const votesMinmax = d3.extent(data, d => +d.imdbVotes);
+console.log(ratingMinmax);

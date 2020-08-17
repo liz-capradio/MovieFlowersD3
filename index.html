@@ -1,11 +1,17 @@
-<script type="text/javascript" src="petal.js"></script>
+<!--script type="text/javascript" src="petal.js"></script-->
 <script src="https://d3js.org/d3.v4.min.js"></script>
+
+<script>
+    const data = require("movies.json").then(data => _.values(data));
+    petalPath = "M0,0 C-10,-10 -10,-40 0,-50 C10,-40, 10,-10 0,0";
+    petalSize = 50;
+</script>
 
 <html>
     <head></head>
     <body>
         <svg width="50" height="50">
-            <path transform="translate(25,50)" d="M0,0 C-10,-10 -10,-40 0,-50 C10,-40, 10,-10 0,0">
+            <path transform="translate(25,50)" d=${petalPath}>
         </svg>
     </body>
 </html>
