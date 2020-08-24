@@ -32,24 +32,32 @@
             .attr('transform', 'translate(' + [20, 20] + ')');
             var petalPath = "M0,0 C-10,-10 -10,-40 0,-50 C10,-40, 10,-10 0,0";
             var petalSize = 50;
-            //var ratingMinMax = d3.extent(movies, movies => +m.imdbRating);
-            //var votesMinMax = d3.extent(movies, movies => +m.imdbVotes);
-            //var sizeScale = d3.scaleLinear(ratingMinMax).domain(ratingMinMax).range([0.25,1]);
-            //var numPetalScale = d3.scaleQuantize(votesMinMax).domain(votesMinMax).range([3,5,9]);
+            var ratingMinMax = d3.extent(movies, m => +m.rating);
+            var votesMinMax = d3.extent(movies, m => +m.votes);
+            var sizeScale = d3.scaleLinear(ratingMinMax).domain(ratingMinMax).range([0.25,1]);
+            var numPetalScale = d3.scaleQuantize(votesMinMax).domain(votesMinMax).range([3,5,9]);
             
+
+
             var svgPath = d3.select('#petalPath')
             .attr('d', petalPath)
             .attr('transform', 'translate(' + [25, 50] + ')');
 
             const index = 27;
-            /*const numPetals = numPetalScale(+data[index].imdbVotes);
-            const sizePetal = sizeScale(+data[index].imdbRatings);
-            const flower = {
-                sizePetal,
-                petals: _.times(numPetals, i => {angle: 360 * i / numPetals, petalPath}),
-            };
-            console.log(flower);*/
+            console.log(+movies[index].rating);
 
+            const numPetals = numPetalScale(+movies[index].votes);
+            const sizePetal = sizeScale(+movies[index].rating);
+            const flower = {
+                sizePetal, 
+                petals: {_.times(numPetals, i => {
+                        angle: (360/numPetals) * i
+                        petalPath
+                    })}
+                }
+            };
+            console.log(numPetals);
+            console.log(i => {angle: 360 * i / numPetals, petalPath});
 
         });
     </script>
