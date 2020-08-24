@@ -26,17 +26,21 @@
 
             console.log(movies);
             // scaling the data
-            var svg = d3.select('.content svg')
+            var svg = d3.select('#petal')
             .style('left', 150 + 'px')
             .append('g')
             .attr('transform', 'translate(' + [20, 20] + ')');
             var petalPath = "M0,0 C-10,-10 -10,-40 0,-50 C10,-40, 10,-10 0,0";
             var petalSize = 50;
-            var ratingMinMax = d3.extent(movies, movies => +m.imdbRating);
-            var votesMinMax = d3.extent(movies, movies => +m.imdbVotes);
-            var sizeScale = d3.scaleLinear(ratingMinMax).domain(ratingMinMax).range([0.25,1]);
-            var numPetalScale = d3.scaleQuantize(votesMinMax).domain(votesMinMax).range([3,5,9]);
+            //var ratingMinMax = d3.extent(movies, movies => +m.imdbRating);
+            //var votesMinMax = d3.extent(movies, movies => +m.imdbVotes);
+            //var sizeScale = d3.scaleLinear(ratingMinMax).domain(ratingMinMax).range([0.25,1]);
+            //var numPetalScale = d3.scaleQuantize(votesMinMax).domain(votesMinMax).range([3,5,9]);
             
+            var svgPath = d3.select('#petalPath')
+            .attr('d', petalPath)
+            .attr('transform', 'translate(' + [25, 50] + ')');
+
             const index = 27;
             /*const numPetals = numPetalScale(+data[index].imdbVotes);
             const sizePetal = sizeScale(+data[index].imdbRatings);
@@ -45,11 +49,13 @@
                 petals: _.times(numPetals, i => {angle: 360 * i / numPetals, petalPath}),
             };
             console.log(flower);*/
+
+
         });
     </script>
     
-    <svg width="50" height="50">
-        <path transform="translate(25,50)" d="M0,0 C-10,-10 -10,-40 0,-50 C10,-40, 10,-10 0,0">
+    <svg id="petal "width="50" height="50">
+        <path id='petalPath'></path>
     </svg>
     
 </body>
